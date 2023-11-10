@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Form Creation</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="Form.js"></script>
+</head>
+<h1>Create a Form</h1>
+
+<body>
+<form id="myForm">
+  <div id="surveyForm">
+    <div class="question" id="question1">
+      <label for="questionTitle1">Question 1</label>
+      <input type="text" id="questionTitle1" name="questionTitle1" placeholder="Enter Survey Question">
+      <br>
+      <br> <!--adding more space-->
+      <label for="fieldType1">Choose Field Type:</label>
+      <select id="fieldType1" name="fieldType1">
+        <option value="">Select a Field Type</option>
+        <option value="text">Text Field</option>
+        <option value="number">Number Field</option>
+        <option value="multipleChoice">Multiple Choice</option>
+      </select>
+      <div class="inputContainer"></div>
+    </div>
+  </div>
+
+  <br>
+  <button id="addQuestion">Add Question</button>
+  <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+</form>
+</body>
+</html>

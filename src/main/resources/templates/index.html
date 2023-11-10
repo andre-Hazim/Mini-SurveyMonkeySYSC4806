@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Home Page for Mini-SurveyMonkey</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+
+<style>
+    button {
+        display: block;
+        border-radius : 100px;
+        margin-bottom: 10px;
+    }
+</style>
+
+<body>
+<h1>Welcome to Mini-SurveyMonkey!</h1>
+<p>Please Select from Options Below</p>
+
+<button th:onclick="|window.location.href='/seeBaseForm'|" method="get">Create a new Form!</button>
+<button th:onclick="|window.location.href='/'|">Edit existing Form</button>
+<button th:onclick="|window.location.href='/viewCreatedFormsPage'|">View created Forms</button>
+
+</body>
+</html>
