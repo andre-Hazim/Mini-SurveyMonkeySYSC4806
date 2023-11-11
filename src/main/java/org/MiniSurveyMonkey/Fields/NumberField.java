@@ -1,11 +1,14 @@
 package org.MiniSurveyMonkey.Fields;
 
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import org.springframework.data.mongodb.core.mapping.Document;
 @Document("numberField")
-
+@JsonTypeName("NumberField")
 public class NumberField extends Field {
     private Integer upperBound;
     private Integer lowerBound;
+
+    public NumberField(){}
 
     public NumberField(String question, String formId, Integer upperBound, Integer lowerBound) {
         super(question,FieldType.NUMBER,formId);

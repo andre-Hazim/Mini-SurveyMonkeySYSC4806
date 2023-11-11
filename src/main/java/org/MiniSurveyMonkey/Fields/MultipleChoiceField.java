@@ -1,14 +1,17 @@
 package org.MiniSurveyMonkey.Fields;
 
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
 
 @Document("mcField")
+@JsonTypeName("MultipleChoiceField")
 public class MultipleChoiceField extends Field {
     private ArrayList<String> options;
     private String selectedOption;
 
+    public MultipleChoiceField() {}
     /**
      * Constructor for MC field
      * @param question, the question associated with this field

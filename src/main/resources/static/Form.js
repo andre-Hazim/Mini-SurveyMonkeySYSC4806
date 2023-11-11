@@ -201,3 +201,65 @@ function checkNumericalValidity(fieldContainer, questionCount) {
 }
 
 })
+
+//to handle form submission
+function getFieldType(questionDiv) {
+    const selectedOption = questionDiv.find(`#fieldType${questionDiv.attr('id').match(/\d+/)[0]}`).val();
+    if (selectedOption === 'number') {
+        return 'NumberField';
+    } else if (selectedOption === 'multipleChoice') {
+        return 'MultipleChoiceField';
+    } else if (selectedOption === 'text') {
+        return 'TextField';
+    }
+    return '';
+}
+$(document).ready(function () {
+    $('#myForm').submit(function (event) {
+        event.preventDefault();
+
+        const formObject = {
+            fields: []
+        };
+
+        $('.question').each(function () {
+            const questionNumber = $(this).attr('id').match(/\d+/)[0];
+
+            const fieldObject = {
+                '@type': getFieldType($(this)),
+                question: $(`#questionTitle${questionNumber}`).val(),
+            };
+
+            if (fieldObject['@type'] === 'NumberField') {
+                fieldObject.lowerBound = $(`#${questionNumber}${lowerStr}`).val();
+                fieldObject.upperBound = $(`#${questionNumber}${upperStr}`).val();
+            }
+
+            if (fieldObject['@type'] === 'MultipleChoiceField') {
+                fieldObject.options = [];
+                fieldObject.selectedOption = ''; //blank for now because we didn't acc select anything
+
+                $(`.mcOption input[name=mcOption${questionNumber}Text]`).each(function () {
+                    fieldObject.options.push($(this).val());
+                });
+            }
+
+            formObject.fields.push(fieldObject);
+        });
+
+        //handle ajax call
+        $.ajax({
+            type: 'POST',
+            url: '/submitForm',
+            contentType: 'application/json',
+            data: JSON.stringify(formObject),
+            success: function (response) {
+                console.log("Form submitted successfully. Response:", response);
+            },
+            error: function (error) {
+                console.error("Error submitting form:", error);
+            }
+        });
+
+    })
+});

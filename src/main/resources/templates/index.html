@@ -4,7 +4,8 @@
     <title>Home Page for Mini-SurveyMonkey</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="Test.js"></script>
 <style>
     button {
         display: block;
@@ -20,6 +21,8 @@
 <button th:onclick="|window.location.href='/seeBaseForm'|" method="get">Create a new Form!</button>
 <button th:onclick="|window.location.href='/'|">Edit existing Form</button>
 <button th:onclick="|window.location.href='/viewCreatedFormsPage'|">View created Forms</button>
+<button id="fieldsButton">Get Fields</button>
 
+<p id="fields">Fields</p>
 </body>
 </html>
