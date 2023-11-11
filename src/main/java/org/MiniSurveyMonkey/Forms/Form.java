@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
 
-@Document(collection = "Form")
+@Document("form")
 public class Form {
 
     @Id
