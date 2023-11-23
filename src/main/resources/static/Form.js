@@ -340,55 +340,64 @@ function getFieldType(questionDiv) {
 $(document).ready(function () {
     $('#myForm').submit(function (event) {
         event.preventDefault();
+        const confirmed = window.confirm("Are you sure you want to submit your form?")
 
-        const formTitle = $(`#formTitle`).val();
+        if (confirmed){
 
-        const formObject = {
-            formName: formTitle,
-            fields: []
-        };
 
-        $('.question').each(function () {
-            const questionNumber = $(this).attr('id').match(/\d+/)[0];
+            const formTitle = $(`#formTitle`).val();
 
-            const fieldObject = {
-                '@type': getFieldType($(this)),
-                question: $(`#questionTitle${questionNumber}`).val(),
+            const formObject = {
+                formName: formTitle,
+                fields: []
             };
 
-            if (fieldObject['@type'] === 'NumberField') {
-                fieldObject.lowerBound = $(`#${questionNumber}${lowerStr}`).val();
-                fieldObject.upperBound = $(`#${questionNumber}${upperStr}`).val();
-            }
+            $('.question').each(function () {
+                const questionNumber = $(this).attr('id').match(/\d+/)[0];
 
-            if (fieldObject['@type'] === 'MultipleChoiceField') {
-                fieldObject.options = [];
-                fieldObject.selectedOption = ''; //blank for now because we didn't acc select anything
+                const fieldObject = {
+                    '@type': getFieldType($(this)),
+                    question: $(`#questionTitle${questionNumber}`).val(),
+                };
 
-                $(`.mcOption input[name=mcOption${questionNumber}Text]`).each(function () {
-                    fieldObject.options.push($(this).val());
-                });
-            }
+                if (fieldObject['@type'] === 'NumberField') {
+                    fieldObject.lowerBound = $(`#${questionNumber}${lowerStr}`).val();
+                    fieldObject.upperBound = $(`#${questionNumber}${upperStr}`).val();
+                }
 
-            formObject.fields.push(fieldObject);
-        });
+                if (fieldObject['@type'] === 'MultipleChoiceField') {
+                    fieldObject.options = [];
+                    fieldObject.selectedOption = ''; //blank for now because we didn't acc select anything
 
-        //handle ajax call
-        $.ajax({
-            type: 'POST',
-            url: '/submitForm',
-            contentType: 'application/json',
-            data: JSON.stringify(formObject),
-            success: function (response) {
-                console.log("Form submitted successfully. Response:", response);
-                const formId = JSON.parse(response).FormId;
-                const redirectUrl = `/form/${formId}`;
-                const link = `<a href="${redirectUrl}">Click here to view the form</a>`;
-                $('#submitMessage').html(`<p>Form ID: ${formId} - Form successfully created</p>${link}`);
-            },
-            error: function (error) {
-                console.error("Error submitting form:", error);
-            }
-        });
+                    $(`.mcOption input[name=mcOption${questionNumber}Text]`).each(function () {
+                        fieldObject.options.push($(this).val());
+                    });
+                }
+
+                formObject.fields.push(fieldObject);
+            });
+
+            //handle ajax call
+            $.ajax({
+                type: 'POST',
+                url: '/submitForm',
+                contentType: 'application/json',
+                data: JSON.stringify(formObject),
+                success: function (response) {
+                    console.log("Form submitted successfully. Response:", response);
+                    const formId = JSON.parse(response).FormId;
+                    const redirectUrl = `/form/${formId}`;
+                    const link = `<a href="${redirectUrl}">Click here to view the form</a>`;
+                    $('#submitMessage').html(`<p>Form ID: ${formId} - Form successfully created</p>${link}`);
+                },
+                error: function (error) {
+                    console.error("Error submitting form:", error);
+                }
+            });
+        } else {
+
+        }
+
+
     })
 });
