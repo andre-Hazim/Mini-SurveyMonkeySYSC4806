@@ -343,8 +343,6 @@ $(document).ready(function () {
         const confirmed = window.confirm("Are you sure you want to submit your form?")
 
         if (confirmed){
-
-
             const formTitle = $(`#formTitle`).val();
 
             const formObject = {
@@ -394,10 +392,6 @@ $(document).ready(function () {
                     console.error("Error submitting form:", error);
                 }
             });
-        } else {
-
-        }
-
-
+        } else { }
     })
 });
