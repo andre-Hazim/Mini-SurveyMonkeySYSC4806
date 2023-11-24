@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Home Page for Mini-SurveyMonkey</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="Test.js"></script>
+<style>
+    button {
+        display: block;
+        border-radius : 100px;
+        margin-bottom: 10px;
+    }
+</style>
+
+<body>
+<h1>Welcome to Mini-SurveyMonkey!</h1>
+<div id="Username">
+    <p>User: <span th:text="${user}"></span><p>
+</div>
+
+<p>Please Select from Options Below</p>
+
+<button th:onclick="|window.location.href='/seeBaseForm'|" method="get">Create a new Form!</button>
+<button th:onclick="|window.location.href='/'|">Edit existing Form</button>
+<button th:onclick="|window.location.href='forms'|">View created Forms</button>
+<button id="fieldsButton">Get Fields</button>
+
+<p id="fields">Fields</p>
+</body>
+</html>

@@ -1,28 +1,19 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Home Page for Mini-SurveyMonkey</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="Login.js"></script>
 </head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="Test.js"></script>
-<style>
-    button {
-        display: block;
-        border-radius : 100px;
-        margin-bottom: 10px;
-    }
-</style>
-
 <body>
-<h1>Welcome to Mini-SurveyMonkey!</h1>
-<p>Please Select from Options Below</p>
-
-<button th:onclick="|window.location.href='/seeBaseForm'|" method="get">Create a new Form!</button>
-<button th:onclick="|window.location.href='/'|">Edit existing Form</button>
-<button th:onclick="|window.location.href='forms'|">View created Forms</button>
-<button id="fieldsButton">Get Fields</button>
-
-<p id="fields">Fields</p>
+    <form id="LoginForm">
+        <h1>Mini-Survey Monkey</h1>
+        <h2>Please Enter Your UserName</h2>
+        <label for="username">Username :</label>
+        <input type="text" id="username" name="username" required>
+        <button type="submit" value="Submit">Login</button>
+    </form>
 </body>
 </html>
