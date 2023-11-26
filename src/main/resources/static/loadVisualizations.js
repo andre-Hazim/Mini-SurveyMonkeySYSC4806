@@ -6,7 +6,7 @@ $(document).ready(function() {
         success: function(data) {
             // Handle the form information
             console.log('Form Information:', data);
-            injectGraphs(data)
+            injectVisualizations(data)
 
         },
         error: function(error) {
@@ -15,27 +15,42 @@ $(document).ready(function() {
         }
     });
 
-    function injectGraphs(form) {
+    function injectVisualizations(form) {
         const questionsContainer = $("#graphsContainer")
 
-        $.each(form.graphs, function(index, graph) {
+        $.each(form.visualizations, function(index, visualization) {
 
-            var graph_div = $("<div>").attr({id: "chart-" + (graph.question).replace(" ", "-")})
+            var visual_div = $("<div>").attr({id: "chart-" + (visualization.question).replace(" ", "-")})
+            questionsContainer.append(visual_div)
+
+            visual_div.append("<h3> Question " + (index + 1) + ": " + visualization.question + "</h3>")
+
             var chart_id = "chart" + (index + 1)
-            var canvas = $('<canvas id=' + chart_id +' width="1000" height="600"></canvas>');
-            questionsContainer.append(graph_div)
-            graph_div.append("<h3> Question " + (index + 1) + ": " + graph.question + "</h3>")
-            graph_div.append(canvas);
 
             var ctx = canvas[0].getContext('2d');
-            if (graph.graphType == "HISTOGRAMGRAPH") {
+            if (visualization.visualizationType === "HISTOGRAMGRAPH") {
                 //drawBarGraph(form.graph[field.id])
-                drawBarGraph(ctx, graph)
+                var canvas = $('<canvas id=' + chart_id +' width="1000" height="600"></canvas>');
+                visual_div.append(canvas);
+                drawBarGraph(ctx, visualization)
             }
-            if (graph.graphType == "PIEGRAPH"){
-                drawPieGraph(ctx, graph);
+            else if (visualization.visualizationType === "PIEGRAPH"){
+                var canvas = $('<canvas id=' + chart_id +' width="1000" height="600"></canvas>');
+                visual_div.append(canvas);
+                drawPieGraph(ctx, visualization);
+            } else if (visualization.visualizationType === "TEXT") {
+                displayTextResponses(visual_div, visualization)
             }
         })
+    }
+
+    function displayTextResponses(container, visualization) {
+        var textList = $("<ul>");
+        visualization.textResponses.forEach(function(response) {
+            var listItem = $("<li>").text(response);
+            textList.append(listItem);
+        });
+        container.append(textList);
     }
 
     function drawBarGraph(ctx) {

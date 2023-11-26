@@ -1,4 +1,4 @@
-package org.MiniSurveyMonkey.Graphs;
+package org.MiniSurveyMonkey.Visualizations;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
@@ -7,7 +7,6 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
         @JsonSubTypes.Type(value = HistogramGraph.class, name = "Histogram"),
         @JsonSubTypes.Type(value = PieGraph.class, name = "PieChart"),
 })
-
 
 public abstract class Visualization {
 
@@ -57,6 +56,5 @@ public abstract class Visualization {
     public void setGraphType(VisualizationType visualizationType){
         this.visualizationType = visualizationType;
     }
-
 
 }

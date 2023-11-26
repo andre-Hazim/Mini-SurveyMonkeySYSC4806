@@ -5,9 +5,7 @@ import org.MiniSurveyMonkey.Fields.Field;
 import org.MiniSurveyMonkey.Fields.FieldType;
 import org.MiniSurveyMonkey.Fields.MultipleChoiceField;
 import org.MiniSurveyMonkey.Forms.Form;
-import org.MiniSurveyMonkey.Graphs.Visualization;
-import org.MiniSurveyMonkey.Graphs.HistogramGraph;
-import org.MiniSurveyMonkey.Graphs.PieGraph;
+import org.MiniSurveyMonkey.Visualizations.*;
 import org.MiniSurveyMonkey.Repositories.*;
 import org.MiniSurveyMonkey.User;
 import org.bson.types.ObjectId;
@@ -173,12 +171,13 @@ public class RestController {
             } else if (field.getFieldType() == FieldType.MC) {
                 visualization = new PieGraph(formId, field.getQuestion(), field.getId(), ((MultipleChoiceField) (field)).getOptions());
                 ((PieGraph) (visualization)).calculateResponse(answers);
+            } else if (field.getFieldType() == FieldType.TEXT) {
+                visualization = new Table(formId, field.getQuestion(), field.getId());
+                ((Table) (visualization)).setTextResponses(answers);
             }
-
 
             f.addVisualization(visualization);
         }
-
 
         temp = f;
         temp.setClosed(true);
@@ -186,5 +185,4 @@ public class RestController {
 
         return temp;
     }
-
 }

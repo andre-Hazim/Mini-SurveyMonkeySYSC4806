@@ -1,7 +1,7 @@
 package org.MiniSurveyMonkey.Forms;
 
 import org.MiniSurveyMonkey.Fields.Field;
-import org.MiniSurveyMonkey.Graphs.Visualization;
+import org.MiniSurveyMonkey.Visualizations.Visualization;
 import org.MiniSurveyMonkey.Response;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -37,6 +37,7 @@ public class Form {
         fields = new ArrayList<>();
         responses = new ArrayList<>();
         closed = false;
+        this.visualizations = new ArrayList<>();
     }
 
     public void addField(Field field){
@@ -106,7 +107,7 @@ public class Form {
         this.visualizations.add(visualization);
     }
 
-    public void setGraphs(ArrayList<Visualization> visualizations) {
+    public void setVisualizations(ArrayList<Visualization> visualizations) {
         this.visualizations = visualizations;
     }
 

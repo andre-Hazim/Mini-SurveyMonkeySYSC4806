@@ -1,4 +1,4 @@
-package org.MiniSurveyMonkey.Graphs;
+package org.MiniSurveyMonkey.Visualizations;
 
 import java.util.ArrayList;
 
