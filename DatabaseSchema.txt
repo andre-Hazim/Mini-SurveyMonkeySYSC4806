@@ -1,0 +1,40 @@
+{
+    "id": "642343erwerwer2",
+    "formName": "Form1",
+    "author": "Group5",
+    "fields": [
+        {
+            "@type": "NumberField",
+            "question": "Question",
+            "upperBound": 100,
+            "lowerBound": 0
+        },
+        {
+            "@type": "MultipleChoiceField",
+            "question": "Your multiple-choice question here",
+            "options": ["Option 1", "Option 2", "Option 3"],
+            "selectedOption": ""
+        },
+        {
+            "@type": "TextField",
+            "question": "Your text question here"
+        }
+    ],
+    "fieldAnswers": [
+        {
+            id: '6563b2dc3e3c12577c465323',
+            formId: '642343erwerwer2',
+            fieldAnswer: "50"
+        },
+        {
+            id: '6563b23a3e3c12577c465320',
+            formId: '642343erwerwer2',
+            fieldAnswer: "Option 1"
+        },
+        {
+            id: '6563b23a3e3c12577c465321',
+            formId: '642343erwerwer2',
+            fieldAnswer: "Testing"
+        }
+    ]
+}
