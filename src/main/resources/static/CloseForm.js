@@ -8,6 +8,7 @@ $(document).ready(function(){
                 // Handle the form information
                 console.log('Form Information:', data);
                 $('#closeButton').remove()
+                $('#editButton').remove()
                 $('#formContainer').append('<p>Form is closed</p>');
                 $('#responseForm').remove();
             },

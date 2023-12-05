@@ -3,28 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Page</title>
+    <title>Edit Form Page</title>
     <!-- Include jQuery library -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script type="module" src="../LoadForm.js" ></script>
-    <script src="../submitResponse.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="../CloseForm.js"></script>
-    <script src="../EditForm.js"></script>
+    <script src="../editForm.js"></script>
 </head>
 <body>
 <h1>Form: <span id="formId_span" th:data-backend-id="${formId}" th:text="${formTitle}"></span></h1>
 
 <!-- AJAX call to retrieve form information -->
 <div id="formContainer">
-    <p id="author">Author: </p>
-    <button type="button" id="closeButton">Close Form</button>
-    <button type="button" id="editButton">Edit Form</button>
-    <form id="responseForm">
-        <div id="questionsContainer"></div>
+    <p id="author">Author: <span th:text="${formAuthor}"></span></p>
+    <form id="questionsForm">
+        <div id="questionsContainer">
+            <!-- This container will hold the dynamically populated questions -->
+        </div>
         <button type="submit">Submit</button>
     </form>
-
 </div>
 
 </body>
